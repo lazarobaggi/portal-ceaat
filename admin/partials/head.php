@@ -1,5 +1,16 @@
+<?php
+session_start(); // Para manter a sessão do usuário
+include 'conn.php'; // Inclua a conexão com o banco de dados
+
+if(!isset($_SESSION['usuario_nome']) || empty($_SESSION['usuario_nome']))
+{
+  $_SESSION['error_message'] = "Acesso não permitido!";
+  header('Location:' . 'login.php');
+  exit;
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -34,3 +45,5 @@
 
 <body class="fixed-nav sticky-footer" id="page-top">
   <!-- Navigation-->
+
+  

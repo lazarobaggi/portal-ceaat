@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/10/2024 às 22:19
+-- Tempo de geração: 15/10/2024 às 07:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -74,24 +74,25 @@ CREATE TABLE `pessoas` (
   `nacionalidade` varchar(50) DEFAULT NULL,
   `cpf` char(11) NOT NULL,
   `cidade` varchar(50) DEFAULT NULL,
-  `cep` char(8) DEFAULT NULL
+  `cep` char(8) DEFAULT NULL,
+  `telefone` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pessoas`
 --
 
-INSERT INTO `pessoas` (`pessoa_id`, `nome`, `sobrenome`, `data_nascimento`, `genero`, `nacionalidade`, `cpf`, `cidade`, `cep`) VALUES
-(1, 'Ana', 'Silva', '2005-03-21', 'Feminino', 'Brasileira', '12345678901', 'São Paulo', '01001000'),
-(2, 'Carlos', 'Pereira', '2004-07-15', 'Masculino', 'Brasileiro', '23456789012', 'São Paulo', '01002000'),
-(3, 'Mariana', 'Oliveira', '2005-10-10', 'Feminino', 'Brasileira', '34567890123', 'São Paulo', '01003000'),
-(4, 'Lucas', 'Costa', '2004-02-28', 'Masculino', 'Brasileiro', '45678901234', 'São Paulo', '01004000'),
-(5, 'Beatriz', 'Santos', '2005-09-05', 'Feminino', 'Brasileira', '56789012345', 'São Paulo', '01005000'),
-(6, 'Ricardo', 'Mendes', '2004-11-18', 'Masculino', 'Brasileiro', '67890123456', 'São Paulo', '01006000'),
-(7, 'Juliana', 'Lima', '2005-01-12', 'Feminino', 'Brasileira', '78901234567', 'São Paulo', '01007000'),
-(8, 'Felipe', 'Almeida', '2004-08-20', 'Masculino', 'Brasileiro', '89012345678', 'São Paulo', '01008000'),
-(9, 'Laura', 'Martins', '2005-06-25', 'Feminino', 'Brasileira', '90123456789', 'São Paulo', '01009000'),
-(10, 'Gabriel', 'Souza', '2004-05-30', 'Masculino', 'Brasileiro', '01234567890', 'São Paulo', '01010000');
+INSERT INTO `pessoas` (`pessoa_id`, `nome`, `sobrenome`, `data_nascimento`, `genero`, `nacionalidade`, `cpf`, `cidade`, `cep`, `telefone`) VALUES
+(1, 'Ana', 'Silva', '2005-03-21', 'Feminino', 'Brasileira', '12345678901', 'São Paulo', '01001000', ''),
+(2, 'Carlos', 'Pereira', '2004-07-15', 'Masculino', 'Brasileiro', '23456789012', 'São Paulo', '01002000', ''),
+(3, 'Mariana', 'Oliveira', '2005-10-10', 'Feminino', 'Brasileira', '34567890123', 'São Paulo', '01003000', ''),
+(4, 'Lucas', 'Costa', '2004-02-28', 'Masculino', 'Brasileiro', '45678901234', 'São Paulo', '01004000', ''),
+(5, 'Beatriz', 'Santos', '2005-09-05', 'Feminino', 'Brasileira', '56789012345', 'São Paulo', '01005000', ''),
+(6, 'Ricardo', 'Mendes', '2004-11-18', 'Masculino', 'Brasileiro', '67890123456', 'São Paulo', '01006000', ''),
+(7, 'Juliana', 'Lima', '2005-01-12', 'Feminino', 'Brasileira', '78901234567', 'São Paulo', '01007000', ''),
+(8, 'Felipe', 'Almeida', '2004-08-20', 'Masculino', 'Brasileiro', '89012345678', 'São Paulo', '01008000', ''),
+(9, 'Laura', 'Martins', '2005-06-25', 'Feminino', 'Brasileira', '90123456789', 'São Paulo', '01009000', ''),
+(10, 'Gabriel', 'Souza', '2004-05-30', 'Masculino', 'Brasileiro', '01234567890', 'São Paulo', '01010000', '');
 
 -- --------------------------------------------------------
 

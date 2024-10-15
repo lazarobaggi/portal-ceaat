@@ -15,15 +15,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Ponto para sair?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="logout.php">Sair</a>
           </div>
         </div>
       </div>
@@ -44,6 +44,15 @@
     <script src="assets/js/admin.js"></script>
 	<!-- Custom scripts for this page-->
     <script src="assets/js/admin-charts.js"></script>
+
+    <script>
+      $(function() {
+        $("#liveAlert").show();
+        setTimeout(function() {
+          $("#liveAlert").fadeOut();
+        }, 3000);
+      });
+    </script>
 	
 </body>
 </html>

@@ -22,21 +22,21 @@
                     <!-- Slides do Carrossel -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="outubrorosa.hmtl" target="_blank" rel="external"><img src="assets/images/outubro_rosa.jpeg" class="d-block img-fluid" alt="Imagem 1"></a>
+                            <a href="outubrorosa.hmtl" target="_blank" rel="external"><img src="uploads/outubro_rosa.jpeg" class="d-block img-fluid" alt="Imagem 1"></a>
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>OUTUBRO ROSA</h5>
                                 <p>Descrição ou legenda sobre a imagem 1.</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <a href="estudante.html" target="_blank" rel="external"><img src="assets/images/foto_estudante.jpg" class="d-block img-fluid" alt="Imagem 2"></a>
+                            <a href="estudante.html" target="_blank" rel="external"><img src="uploads/foto_estudante.jpg" class="d-block img-fluid" alt="Imagem 2"></a>
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>VIAGEM</h5>
                                 <p>Descrição ou legenda sobre a imagem 2.</p>
                             </div>
                         </div>
                         <!-- <div class="carousel-item">
-                                    <img src="assets/images/FOTOEDITADA.jpg" class="d-block" alt="Imagem 3">
+                                    <img src="uploads/FOTOEDITADA.jpg" class="d-block" alt="Imagem 3">
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>Título da Imagem 3</h5>
                                         <p>Descrição ou legenda sobre a imagem 3.</p>
@@ -58,13 +58,13 @@
 
             <div class="professores">
                 <div class="professor">
-                    <img src="assets/images/GILBERTO.jpg" alt="Gilberto Monteiro">
+                    <img src="uploads/GILBERTO.jpg" alt="Gilberto Monteiro">
                     <h3>GILBERTO MONTEIRO</h3>
                     <p>57 anos</p>
                 </div>
 
                 <div class="professor">
-                    <img src="assets/images/lucas.jpg " alt="Lucas Noronha">
+                    <img src="uploads/lucas.jpg " alt="Lucas Noronha">
                     <h3>LUCAS NORONHA</h3>
                     <p>27 anos, formado em análise de sistemas especializada em big, atua como professor no CEAAT desde 2019</p>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="professores">
                     <div class="professor">
                         <div class="image-container">
-                            <img src="assets/images/daniel.jpg" alt="Daniel Santana">
+                            <img src="uploads/daniel.jpg" alt="Daniel Santana">
                         </div>
                         <h3>DANIEL SANTANA</h3>
                         <p>45 anos, Sistema da informação pós-graduado pela UNEB & IFBA, atua como professor no CEAAT desde 2021</p>
@@ -82,7 +82,7 @@
 
                     <div class="professor">
                         <div class="image-container">
-                            <img src="assets/images/acacia.jpg" alt="Acácia Juriti">
+                            <img src="uploads/acacia.jpg" alt="Acácia Juriti">
                         </div>
                         <h3>ACÁCIA JURITI</h3>
                         <p>30 anos, licenciada em computação, atua como professora no CEAAT desde 2022</p>

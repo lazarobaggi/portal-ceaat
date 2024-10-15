@@ -1,3 +1,7 @@
+<?php
+ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,14 +37,14 @@
 
                     <?php if(!isset($_SESSION['usuario_nome']) || empty($_SESSION['usuario_nome'])): ?>
 
-                    <a href="login.php" class="btn btn-success m-5">                        
+                    <a href="admin/login.php" class="btn btn-success m-5">                        
                         <i class="fa-regular fa-user"></i> Login
                     </a>
                         
                     <?php elseif(isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome'])): ?>    
 
-                    <a href="logout.php" class="btn btn-success m-5">                        
-                        <i class="fa-regular fa-user"></i> Logout
+                    <a href="admin/logout.php" class="btn btn-success m-5">                        
+                        <i class="fa-regular fa-user"></i> Sair
                     </a>
 
                     <?php endif; ?>
@@ -52,8 +56,8 @@
         <!-- Sidebar BARRA LATERAL -->
         <div class="col-2 side-menu" id="sidebarMenu">
             <ul>
-                <li class="menu-item"><a href="#">Homepage</a></li>
-                <li class="menu-item"><a href="#">História do CEAAT</a></li>
+                <li class="menu-item"><a href="index.php">Homepage</a></li>
+                <li class="menu-item"><a href="historia.php">História do CEAAT</a></li>
                 <li class="menu-item"><a href="eventos.php">Eventos</a></li>
                 <li class="menu-item"><a href="cursos.php">Cursos</a></li>
                 <li class="menu-item"><a href="ambientes.php">Ambientes</a></li>
