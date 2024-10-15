@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start(); // Para manter a sessão do usuário
 include 'conn.php'; // Inclua a conexão com o banco de dados
 
@@ -18,7 +19,7 @@ if(!isset($_SESSION['usuario_nome']) || empty($_SESSION['usuario_nome']))
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Ansonika">
-  <title>FINDOCTOR - Admin dashboard</title>
+  <title>Portal - CEAAT</title>
 	
   <!-- Favicons-->
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">

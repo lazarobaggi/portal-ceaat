@@ -2,7 +2,7 @@
 
 // Configurações do banco de dados
 $host = 'localhost'; // Endereço do servidor MySQL
-$dbname = 'portal_ceaat_db'; // Nome do banco de dados
+$dbname = 'workthem_portal_ceaat_db'; // Nome do banco de dados
 $username = 'root'; // workthem_admin
 $password = ''; // 9YnQVAt6T=06
 
