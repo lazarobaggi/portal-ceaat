@@ -4,8 +4,6 @@ include 'conn.php'; // Inclua a conexão com o banco de dados
 
 ?>
 
-<!-- ############################################################################################## -->
-
 <?php 
 if (isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome'])) {
   $_SESSION['error_message'] = "Acesso não permitido!";
@@ -18,14 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $senha = $_POST['senha'];
 
   // Verifica se o usuário existe na tabela 'alunos'
-  $stmt = $pdo->prepare("SELECT * FROM alunos WHERE email = :email AND senha = :senha");
+  $stmt = $pdo->prepare("SELECT * FROM alunos WHERE email = :email");
   $stmt->bindValue(":email", $email);
-  $stmt->bindValue(":senha", password_verify($senha, PASSWORD_DEFAULT)); // Atenção: deve usar password_verify()
   $stmt->execute();
   $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($aluno) {
-      // Usuário encontrado na tabela 'alunos'
+  if ($aluno && password_verify($senha, $aluno['senha'])) {
+      // Usuário encontrado na tabela 'alunos' e senha verificada
       $_SESSION['usuario_id'] = $aluno['aluno_id'];
       $_SESSION['usuario_nome'] = $aluno['nome'];
       $_SESSION['usuario_role'] = 'aluno';
@@ -34,14 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       exit;
   } else {
       // Verifica se o usuário existe na tabela 'professores'
-      $stmt = $pdo->prepare("SELECT * FROM professores WHERE email = :email AND senha = :senha");
+      $stmt = $pdo->prepare("SELECT * FROM professores WHERE email = :email");
       $stmt->bindValue(":email", $email);
-      $stmt->bindValue(":senha", password_verify($senha, PASSWORD_DEFAULT)); // Atenção: deve usar password_verify()
       $stmt->execute();
       $professor = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if ($professor) {
-          // Usuário encontrado na tabela 'professores'
+      if ($professor && password_verify($senha, $professor['senha'])) {
+          // Usuário encontrado na tabela 'professores' e senha verificada
           $_SESSION['usuario_id'] = $professor['professor_id'];
           $_SESSION['usuario_nome'] = $professor['nome'];
           $_SESSION['usuario_role'] = 'professor';
@@ -49,13 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           header('Location: dashboard.php');
           exit;
       } else {
-          // Nenhum usuário encontrado
+          // Nenhum usuário encontrado ou senha incorreta
           $_SESSION['error_message'] = "Email ou senha errados!";
           header('Location: login.php');
           exit;
       }
   }
 }
+
 
 ?>
 
@@ -213,7 +210,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
           </div>
           <div class="form-group forget-password">
-            <a href="#" class="text-muted">Esqueceu a senha?</a>
+            <a href="#" class="text-muted">Esqueceu a senha?</a> | 
+            <a href="../" class="text-muted">Home</a>
+
           </div>
         </form>
       </div>
