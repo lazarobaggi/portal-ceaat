@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/10/2024 às 23:21
+-- Tempo de geração: 16/10/2024 às 02:36
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `alunos` (
   `cep` char(8) DEFAULT NULL,
   `matricula` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(64) NOT NULL,
+  `senha` char(64) NOT NULL,
   `curso` varchar(100) NOT NULL,
   `ano_ingresso` year(4) NOT NULL,
   `telefone` text NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `professores` (
   `area_expertise` varchar(100) DEFAULT NULL,
   `data_admissao` date NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(64) NOT NULL
+  `senha` char(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `professores` (
 INSERT INTO `professores` (`professor_id`, `nome`, `sobrenome`, `titulacao`, `area_expertise`, `data_admissao`, `email`, `senha`) VALUES
 (9, 'Tatiane', 'Barbosa chagas', 'Professor REGULAR', 'Geografia', '2021-09-01', 'fafa@gmail.com', '123456'),
 (10, 'Felipe', 'Nogueira', 'Professor TÉCNICO', 'Banco de Dados', '2023-03-05', '', ''),
-(17, 'Lazaro', 'Baggi', 'Professor REGULAR', '', '2024-10-16', 'baggitech@gmail.com', '$2y$10$JqIukQquwExbKRKAgWQhcOXZ7rX8vwSXY1xkrYZK/D3vMsCV3QbSW');
+(18, 'Lazaro', 'Baggi', 'Professor REGULAR', '', '2024-10-24', 'baggitech@gmail.com', '$2y$10$/BIA7eFO29sLXAP9TKGx2eizwQk9k5xkLI1Ym1BZ6B0aPCM5GySI6');
 
 -- --------------------------------------------------------
 
@@ -90,22 +90,21 @@ CREATE TABLE `usuarios` (
   `usuario_id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha_hash` char(64) NOT NULL,
+  `senha` char(64) NOT NULL,
   `data_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
   `ultimo_login` timestamp NULL DEFAULT NULL,
   `status` enum('Ativo','Inativo','Bloqueado') NOT NULL,
-  `papel` enum('Professor','Aluno','Diretor','Admin') NOT NULL,
-  `pessoa_id` int(11) NOT NULL,
-  `alunos` int(10) NOT NULL
+  `usuario_role` enum('Professor','Aluno','Diretor','Admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `nome`, `email`, `senha_hash`, `data_criacao`, `ultimo_login`, `status`, `papel`, `pessoa_id`, `alunos`) VALUES
-(2, 'fafa', 'fafa@gmail.com', '123456', '2024-10-03 19:33:03', NULL, 'Ativo', 'Professor', 1, 0),
-(4, 'fefe', 'fefe@gmail.com', '123456', '2024-10-03 21:26:29', NULL, 'Ativo', 'Aluno', 5, 0);
+INSERT INTO `usuarios` (`usuario_id`, `nome`, `email`, `senha`, `data_criacao`, `ultimo_login`, `status`, `usuario_role`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$S0B.EBl8EnvwLjoYTkR7FeUy1frge8AxRWOscWTdigD9767pWJpbC', '2024-10-15 23:18:19', NULL, 'Ativo', 'Admin'),
+(2, 'fafa', 'fafa@gmail.com', '$2y$10$S0B.EBl8EnvwLjoYTkR7FeUy1frge8AxRWOscWTdigD9767pWJpbC', '2024-10-03 19:33:03', NULL, 'Ativo', 'Professor'),
+(3, 'fefe', 'fefe@gmail.com', '$2y$10$S0B.EBl8EnvwLjoYTkR7FeUy1frge8AxRWOscWTdigD9767pWJpbC', '2024-10-03 21:26:29', NULL, 'Ativo', 'Aluno');
 
 --
 -- Índices para tabelas despejadas
@@ -124,6 +123,12 @@ ALTER TABLE `professores`
   ADD PRIMARY KEY (`professor_id`);
 
 --
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario_id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -131,13 +136,19 @@ ALTER TABLE `professores`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `aluno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `aluno_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `professores`
 --
 ALTER TABLE `professores`
-  MODIFY `professor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `professor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

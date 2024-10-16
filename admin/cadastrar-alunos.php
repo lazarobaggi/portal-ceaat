@@ -2,6 +2,21 @@
 <?php include_once('partials/navbar.php'); ?>
 
 <?php
+
+if($_SESSION['usuario_role'] == 'aluno')
+{
+    header("Location: dashboard-aluno.php");
+    exit();
+}
+if($_SESSION['usuario_role'] == 'professor') 
+{
+    header("Location: dashboard-professor.php");
+    exit();
+}
+
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se os dados foram enviados
     $nome = $_POST['nome'] ?? null;

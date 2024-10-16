@@ -3,6 +3,18 @@
 
 
 <?php
+
+if($_SESSION['usuario_role'] == 'aluno')
+{
+    header("Location: dashboard-aluno.php");
+    exit();
+}
+if($_SESSION['usuario_role'] == 'professor') 
+{
+    header("Location: dashboard-professor.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se o ID do professor a ser editado foi enviado
     $professor_id = $_POST['professor_id'] ?? null;
@@ -35,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':area_expertise' => $area_expertise,
         ':data_admissao' => $data_admissao,
         ':email' => $email,
-        ':senha' => $senha
+        ':senha' => password_hash($senha, PASSWORD_DEFAULT) // Hasheando a senha
     ]);
 
     if ($stmt) {

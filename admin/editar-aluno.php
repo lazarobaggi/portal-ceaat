@@ -2,7 +2,20 @@
 <?php include_once('partials/navbar.php'); ?>
 
 
-<?php 
+<?php
+
+if($_SESSION['usuario_role'] == 'aluno')
+{
+    header("Location: dashboard-aluno.php");
+    exit();
+}
+if($_SESSION['usuario_role'] == 'professor') 
+{
+    header("Location: dashboard-professor.php");
+    exit();
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se o ID do aluno a ser editado foi enviado
     $aluno_id = $_POST['aluno_id'] ?? null;
@@ -20,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ano_ingresso = $_POST['ano_ingresso'] ?? null;
     $telefone = $_POST['telefone'] ?? null;
     $status = $_POST['status'] ?? 'Ativo';
+    $email = $_POST['email'] ?? null; // Capturando o e-mail
+    $senha = $_POST['senha'] ?? null; // Capturando a senha
 
     // Exemplo de atualização no banco
     $stmt = $pdo->prepare("UPDATE alunos SET 
@@ -34,6 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         curso = :curso,
         ano_ingresso = :ano_ingresso,
         telefone = :telefone,
+        email = :email,
+        senha = :senha,
         status = :status
         WHERE aluno_id = :aluno_id");
 
@@ -51,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':curso' => $curso,
         ':ano_ingresso' => $ano_ingresso,
         ':telefone' => $telefone,
+        ':email' => $email,
+        ':senha' => password_hash($senha, PASSWORD_DEFAULT), // Hasheando a senha
         ':status' => $status
     ]);
 
@@ -132,7 +151,7 @@ if (isset($_GET['aluno_id'])) {
             <div class="card-body">
 
                 <form action="" method="POST" class="form-horizontal">
-                <input type="hidden" name="aluno_id" class="form-control" id="aluno_id" value="<?= $aluno_id ?? ''; ?>" required>
+                    <input type="hidden" name="aluno_id" class="form-control" id="aluno_id" value="<?= $aluno_id ?? ''; ?>" required>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -185,7 +204,15 @@ if (isset($_GET['aluno_id'])) {
                             </div>
                             <div class="form-group">
                                 <label for="telefone" class="control-label">Telefone:</label>
-                                <textarea name="telefone" class="form-control" id="telefone" value="<?= $telefone ?? ''; ?>" ></textarea>
+                                <textarea name="telefone" class="form-control" id="telefone" value="<?= $telefone ?? ''; ?>"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email:</label>
+                                <input type="email" name="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="senha" class="control-label">Senha:</label>
+                                <input type="password" name="senha" class="form-control" id="senha" required>
                             </div>
                             <div class="form-group">
                                 <label for="status" class="control-label">Status:</label>

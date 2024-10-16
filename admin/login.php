@@ -5,53 +5,81 @@ include 'conn.php'; // Inclua a conexão com o banco de dados
 ?>
 
 <?php 
-if (isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome'])) {
+if (isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome'])) 
+{
   $_SESSION['error_message'] = "Acesso não permitido!";
   header('Location: dashboard.php');
   exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+{
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-  // Verifica se o usuário existe na tabela 'alunos'
-  $stmt = $pdo->prepare("SELECT * FROM alunos WHERE email = :email");
-  $stmt->bindValue(":email", $email);
-  $stmt->execute();
-  $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Verifica se o usuário existe na tabela 'alunos'
+    $stmt = $pdo->prepare("SELECT * FROM alunos WHERE email = :email");
+    $stmt->bindValue(":email", $email);
+    $stmt->execute();
+    $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($aluno && password_verify($senha, $aluno['senha'])) {
-      // Usuário encontrado na tabela 'alunos' e senha verificada
-      $_SESSION['usuario_id'] = $aluno['aluno_id'];
-      $_SESSION['usuario_nome'] = $aluno['nome'];
-      $_SESSION['usuario_role'] = 'aluno';
-      $_SESSION['success_message'] = "Login efetuado com sucesso!";
-      header('Location: dashboard.php');
-      exit;
-  } else {
-      // Verifica se o usuário existe na tabela 'professores'
-      $stmt = $pdo->prepare("SELECT * FROM professores WHERE email = :email");
-      $stmt->bindValue(":email", $email);
-      $stmt->execute();
-      $professor = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($aluno && password_verify($senha, $aluno['senha'])) 
+    {
+        // Usuário encontrado na tabela 'alunos' e senha verificada
+        $_SESSION['usuario_id'] = $aluno['aluno_id'];
+        $_SESSION['usuario_nome'] = $aluno['nome'];
+        $_SESSION['usuario_role'] = 'aluno';
+        $_SESSION['success_message'] = "Login efetuado com sucesso!";
+        header('Location: dashboard-aluno.php');
+        exit;
+    } 
+    else 
+    {
+        // Verifica se o usuário existe na tabela 'professores'
+        $stmt = $pdo->prepare("SELECT * FROM professores WHERE email = :email");
+        $stmt->bindValue(":email", $email);
+        $stmt->execute();
+        $professor = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      if ($professor && password_verify($senha, $professor['senha'])) {
-          // Usuário encontrado na tabela 'professores' e senha verificada
-          $_SESSION['usuario_id'] = $professor['professor_id'];
-          $_SESSION['usuario_nome'] = $professor['nome'];
-          $_SESSION['usuario_role'] = 'professor';
-          $_SESSION['success_message'] = "Login efetuado com sucesso!";
-          header('Location: dashboard.php');
-          exit;
-      } else {
-          // Nenhum usuário encontrado ou senha incorreta
-          $_SESSION['error_message'] = "Email ou senha errados!";
-          header('Location: login.php');
-          exit;
-      }
-  }
+        if ($professor && password_verify($senha, $professor['senha'])) 
+        {
+            // Usuário encontrado na tabela 'professores' e senha verificada
+            $_SESSION['usuario_id'] = $professor['professor_id'];
+            $_SESSION['usuario_nome'] = $professor['nome'];
+            $_SESSION['usuario_role'] = 'professor';
+            $_SESSION['success_message'] = "Login efetuado com sucesso!";
+            header('Location: dashboard-professor.php');
+            exit;
+        } 
+        else 
+        {
+            // Verifica se o usuário existe na tabela 'usuarios'
+            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+            $stmt->bindValue(":email", $email);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($usuario && password_verify($senha, $usuario['senha'])) 
+            {
+                // Usuário encontrado na tabela 'usuarios' e senha verificada
+                $_SESSION['usuario_id'] = $usuario['usuario_id'];
+                $_SESSION['usuario_nome'] = $usuario['nome'];
+                $_SESSION['usuario_role'] = 'admin';
+                $_SESSION['success_message'] = "Login efetuado com sucesso!";
+                header('Location: dashboard.php');
+                exit;
+            } 
+            else 
+            {
+                // Nenhum usuário encontrado ou senha incorreta
+                $_SESSION['error_message'] = "Email ou senha errados!";
+                header('Location: login.php');
+                exit;
+            }
+        }
+    }
 }
+
 
 
 ?>

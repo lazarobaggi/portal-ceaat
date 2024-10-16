@@ -2,20 +2,6 @@
 <?php include_once('partials/navbar.php'); ?>
 
 <?php
-
-
-if($_SESSION['usuario_role'] == 'aluno')
-{
-    header("Location: dashboard-aluno.php");
-    exit();
-}
-if($_SESSION['usuario_role'] == 'professor') 
-{
-    header("Location: dashboard-professor.php");
-    exit();
-}
-
-
 //Total Subscribers
 $stmt = $pdo->query("SELECT * FROM alunos");
 $stmt->execute();
@@ -33,7 +19,7 @@ $alunos = $stmt->rowCount();
       <li class="breadcrumb-item">
         <a href="#">Dashboard</a>
       </li>
-      <li class="breadcrumb-item active">My Dashboard</li>
+      <li class="breadcrumb-item active">Painel do aluno</li>
     </ol>
 
     <div class="row">
@@ -122,7 +108,7 @@ $alunos = $stmt->rowCount();
     <h2></h2>
     <div class="box_general padding_bottom">
       <div class="header_box version_2">
-        <h2><i class="fa fa-bar-chart"></i>Statistic</h2>
+        <h2><i class="fa fa-bar-chart"></i>Painel</h2>
       </div>
 
 

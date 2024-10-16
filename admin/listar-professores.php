@@ -3,6 +3,19 @@
 
 
 <?php
+
+if($_SESSION['usuario_role'] == 'aluno')
+{
+    header("Location: dashboard-aluno.php");
+    exit();
+}
+if($_SESSION['usuario_role'] == 'professor') 
+{
+    header("Location: dashboard-professor.php");
+    exit();
+}
+
+
     // Deletar registro de professores
     if (isset($_POST['delete_professor'])) {
         $professor_id = $_POST['professor_id'];

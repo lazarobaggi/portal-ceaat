@@ -9,41 +9,20 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
+
+    <?php if($_SESSION['usuario_role'] == 'admin'): ?>
+
+
+    <?php endif; ?>
+    <?php if($_SESSION['usuario_role'] == 'admin'): ?>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         <a class="nav-link" href="index.php">
           <i class="fa fa-fw fa-dashboard"></i>
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
-
-      <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-        <a class="nav-link" href="messages.html">
-          <i class="fa fa-fw fa-envelope-open"></i>
-          <span class="nav-link-text">Messages</span>
-        </a>
-      </li> -->
-
-      <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-        <a class="nav-link" href="reviews.html">
-          <i class="fa fa-fw fa-star"></i>
-          <span class="nav-link-text">Reviews</span>
-        </a>
-      </li> -->
-
-      <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookmarks">
-        <a class="nav-link" href="bookmarks.html">
-          <i class="fa fa-fw fa-heart"></i>
-          <span class="nav-link-text">Bookmarks</span>
-        </a>
-      </li> -->
-
-      <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-        <a class="nav-link" href="add-listing.html">
-          <i class="fa fa-fw fa-plus-circle"></i>
-          <span class="nav-link-text">Add listing</span>
-        </a>
-      </li> -->
-
+    <?php endif; ?>
+    <?php if($_SESSION['usuario_role'] == 'admin'): ?>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProfile" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-users"></i>
@@ -58,7 +37,8 @@
           </li>
         </ul>
       </li>
-
+    <?php endif; ?>
+    <?php if($_SESSION['usuario_role'] == 'admin'): ?>
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-users"></i>
@@ -73,6 +53,32 @@
           </li>
         </ul>
       </li>
+    <?php endif; ?>
+    <?php if($_SESSION['usuario_role'] == 'professor'): ?>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+        <a class="nav-link" href="dashboard-professor.php">
+          <i class="fa fa-fw fa-cog"></i>
+          <span class="nav-link-text">Painel do professor</span>
+        </a>
+      </li>
+    <?php endif; ?>
+    <?php if($_SESSION['usuario_role'] == 'aluno'): ?>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+        <a class="nav-link" href="dashboard-aluno.php">
+          <i class="fa fa-fw fa-cog"></i>
+          <span class="nav-link-text">Painel do aluno</span>
+        </a>
+      </li>
+    <?php endif; ?>
+
+
+
+
+
+
+
+
+
 
     </ul>
 

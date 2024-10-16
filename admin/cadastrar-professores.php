@@ -2,6 +2,19 @@
 <?php include_once('partials/navbar.php'); ?>
 
 <?php
+
+if($_SESSION['usuario_role'] == 'aluno')
+{
+    header("Location: dashboard-aluno.php");
+    exit();
+}
+if($_SESSION['usuario_role'] == 'professor') 
+{
+    header("Location: dashboard-professor.php");
+    exit();
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se os dados foram enviados
 
@@ -13,9 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data_admissao = $_POST['data_admissao'] ?? null;
     $email = $_POST['email'] ?? null;
     $senha = $_POST['senha'] ?? null;
-
-    // Criptografa a senha
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     // Query preparada para inserção no banco
     $stmt = $pdo->prepare("INSERT INTO professores (nome, sobrenome, titulacao, area_expertise, data_admissao, email, senha)
@@ -29,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':area_expertise' => $area_expertise,
         ':data_admissao' => $data_admissao,
         ':email' => $email,
-        ':senha' => $senha_hash
+        ':senha' => password_hash($senha, PASSWORD_DEFAULT) // Hasheando a senha
     ]);
 
     if ($stmt) {
