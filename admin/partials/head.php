@@ -1,8 +1,7 @@
+<?php ob_start(); ?>
+<?php session_start(); ?>
 <?php
-ob_start();
-session_start(); // Para manter a sessão do usuário
 include 'conn.php'; // Inclua a conexão com o banco de dados
-
 if(!isset($_SESSION['usuario_nome']) || empty($_SESSION['usuario_nome']))
 {
   $_SESSION['error_message'] = "Acesso não permitido!";
@@ -12,7 +11,6 @@ if(!isset($_SESSION['usuario_nome']) || empty($_SESSION['usuario_nome']))
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

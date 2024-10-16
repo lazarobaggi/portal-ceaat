@@ -1,7 +1,5 @@
-<?php
-ob_start();
-session_start();
-?>
+<?php ob_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

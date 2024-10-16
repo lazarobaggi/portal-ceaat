@@ -1,14 +1,12 @@
-<?php
-session_start(); // Para manter a sessão do usuário
-include 'conn.php'; // Inclua a conexão com o banco de dados
-
-?>
+<?php ob_start(); ?>
+<?php session_start(); ?>
+<?php include 'conn.php'; ?>
 
 <?php 
-if (isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome'])) 
+if(isset($_SESSION['usuario_nome']) && !empty($_SESSION['usuario_nome']))
 {
   $_SESSION['error_message'] = "Acesso não permitido!";
-  header('Location: dashboard.php');
+  header('Location:' . 'dashboard.php');
   exit;
 }
 
