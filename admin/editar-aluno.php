@@ -208,11 +208,11 @@ if (isset($_GET['aluno_id'])) {
                             </div>
                             <div class="form-group">
                                 <label for="email" class="control-label">Email:</label>
-                                <input type="email" name="email" class="form-control" id="email" required>
+                                <input type="email" name="email" class="form-control" id="email" value="<?= $email ?? ''; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="senha" class="control-label">Senha:</label>
-                                <input type="password" name="senha" class="form-control" id="senha" required>
+                                <input type="password" name="senha" class="form-control" id="senha" value="<?= $senha ?? ''; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="status" class="control-label">Status:</label>
